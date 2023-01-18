@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::resource('todos', \App\Http\Controllers\TodoController::class);
+Route::get('todos/{todo}/complete', '\App\Http\Controllers\TodoController@complete')->name('todos.complete');
+Route::get('todos/{todo}/delete', '\App\Http\Controllers\TodoController@destroy')->name('todos.destroy');
