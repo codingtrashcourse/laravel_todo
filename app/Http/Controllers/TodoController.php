@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Todo;
 
 class TodoController extends Controller
@@ -16,8 +18,7 @@ class TodoController extends Controller
     public function index()
     {
         //
-        $todos = Todo::all();
-
+        $todos = Todo::where('user', Auth::id())->get();
         return view('todo', compact('todos'));
     }
 
@@ -50,6 +51,7 @@ class TodoController extends Controller
         }
 
         Todo::create([
+            'user' => Auth::id(),
             'title' => $request->get('title')
         ]);
 
