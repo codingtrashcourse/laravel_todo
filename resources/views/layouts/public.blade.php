@@ -15,7 +15,10 @@
         <a class="navbar-brand" href="{{ route('todos.index') }}">Laravel Todo</a>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('signout') }}">Sign out</a>
+            <a class="nav-link" href="{{ route('signup') }}">Sign up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('signin') }}">Sign in</a>
           </li>
         </ul>
       </div>
