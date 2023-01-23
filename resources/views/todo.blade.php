@@ -17,7 +17,7 @@
   <div class="mt-3">
     <ul class="list-group">
       @foreach($todos as $todo)
-        <li class="list-group-item d-flex justify-content-between align-items-center">
+        <li class="list-group-item d-flex justify-content-between align-items-center" style="border-color: {{ $todo->color }} !important">
           <span @class(['text-decoration-line-through' => $todo->completed ])>
             {{ $todo->title }}
             <a href="{{ route('todos.edit', ['todo' => $todo->id]) }}">

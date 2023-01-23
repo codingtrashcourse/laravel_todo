@@ -52,10 +52,11 @@ class TodoController extends Controller
 
         Todo::create([
             'user' => Auth::id(),
-            'title' => $request->get('title')
+            'title' => $request->get('title'),
+            'color' => '#212529',
         ]);
 
-        return redirect()->route('todos.index')->with('success', 'Todo saved successfully');
+        return redirect()->route('todos.index')->with('success', 'Todo created successfully');
     }
 
     /**
@@ -93,7 +94,8 @@ class TodoController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            'title' => 'required'
+            'title' => 'required',
+            'color' => 'required'
         ]);
 
         if($validator->fails()) {
@@ -102,9 +104,10 @@ class TodoController extends Controller
 
         $todo = Todo::where('id', $id)->first();
         $todo->title = $request->get('title');
+        $todo->color = $request->get('color');
         $todo->save();
 
-        return redirect()->route('todos.index')->with('success', 'Todo title updated');
+        return redirect()->route('todos.index')->with('success', 'Todo updated');
     }
 
     public function complete($id)
