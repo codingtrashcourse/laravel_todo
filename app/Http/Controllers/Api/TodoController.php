@@ -99,7 +99,7 @@ class TodoController extends Controller
     public function update(Request $request, Todo $todo)
     {
 
-         $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
             'color' => 'required'
         ]);
