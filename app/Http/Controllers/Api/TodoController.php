@@ -53,14 +53,15 @@ class TodoController extends Controller
             ], 400);
         }
 
-        Todo::create([
+        $todo = Todo::create([
             'user' => auth('sanctum')->user()->id,
             'title' => $request->get('title'),
             'color' => '#212529',
         ]);
 
         return response()->json([
-            'message' => 'Todo created successfully'
+            'message' => 'Todo created successfully',
+            'todo' => $todo->fresh()
         ], 200);
     }
 
@@ -72,7 +73,9 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return response()->json([
+            'todo' => $todo
+        ], 200);
     }
 
     /**
@@ -95,7 +98,38 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
+
+         $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'color' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                'message' => 'Missing parameters',
+                'errors' => $validator->errors(),
+            ], 400);
+        }
+
+        $todo->title = $request->get('title');
+        $todo->color = $request->get('color');
+        $todo->save();
+
+        return response()->json([
+            'message' => 'Todo updated'
+        ], 200);
+    }
+
+    public function complete($id)
+    {
         //
+        $todo = Todo::where('id', $id)->first();
+        $todo->completed = !$todo->completed;
+        $todo->save();
+
+        return response()->json([
+            'message' => 'Todo completed'
+        ], 200);
     }
 
     /**
@@ -106,6 +140,10 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+
+        return response()->json([
+            'message' => 'Todo removed'
+        ], 200);
     }
 }
