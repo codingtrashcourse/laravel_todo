@@ -16,6 +16,21 @@ processes = []
   LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
 
+  APP_NAME = "SobrangTodo"
+  APP_ENV = "local"
+  APP_KEY = "base64:n6rZxNFKT5PRa/ybPacdDhya4Kdo4j5sPekMfyye9qs="
+  APP_DEBUG = true
+  APP_URL = "https://sobrangtodo.fly.dev"
+
+  CACHE_DRIVER = "file"
+  FILESYSTEM_DISK = "local"
+  SESSION_DRIVER = "file"
+  SESSION_LIFETIME = 120
+
+  LOG_CHANNEL = "stack"
+  LOG_DEPRECATIONS_CHANNEL = "null"
+  LOG_LEVEL = "debug"
+
 [experimental]
   auto_rollback = true
 
