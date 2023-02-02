@@ -12,12 +12,9 @@ processes = []
 
 [env]
   APP_ENV = "production"
-  LOG_CHANNEL = "stderr"
-  LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
 
   APP_NAME = "SobrangTodo"
-  APP_ENV = "local"
   APP_KEY = "base64:n6rZxNFKT5PRa/ybPacdDhya4Kdo4j5sPekMfyye9qs="
   APP_DEBUG = true
   APP_URL = "https://sobrangtodo.fly.dev"
